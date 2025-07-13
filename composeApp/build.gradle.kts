@@ -49,6 +49,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
             implementation(project(":core"))
+            implementation(project(":rickandmortyapi"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

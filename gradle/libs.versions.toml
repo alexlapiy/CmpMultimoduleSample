@@ -18,7 +18,7 @@ kotlinx-coroutines = "1.10.2"
 kotlinStdlib = "2.2.0"
 runner = "1.6.2"
 core = "1.6.1"
-kotlin-serialization = "1.7.3"
+kotlin-serialization = "1.9.0"
 
 koin-bom = "4.1.0"
 
@@ -26,7 +26,7 @@ coil = "3.2.0"
 ktor = "3.2.1"
 
 sqldelight = "2.1.0"
-napier = "2.6.1"
+napier = "2.7.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }

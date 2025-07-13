@@ -10,8 +10,8 @@ kotlin {
     // See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
     androidLibrary {
         namespace = "com.example.core"
-        compileSdk = 36
-        minSdk = 24
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
 
         withHostTestBuilder {
         }
@@ -23,30 +23,13 @@ kotlin {
         }
     }
 
-    // For iOS targets, this is also where you should
-    // configure native binary output. For more information, see:
-    // https://kotlinlang.org/docs/multiplatform-build-native-binaries.html#build-xcframeworks
-
-    // A step-by-step guide on how to include this library in an XCode
-    // project can be found here:
-    // https://developer.android.com/kotlin/multiplatform/migrate
-    val xcfName = "coreKit"
-
-    iosX64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
-
-    iosArm64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
-
-    iosSimulatorArm64 {
-        binaries.framework {
-            baseName = xcfName
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "coreKit"
         }
     }
 
@@ -61,7 +44,14 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.kotlin.stdlib)
-                // Add KMP dependencies here
+
+                implementation(project.dependencies.platform(libs.koin.bom))
+                implementation(libs.koin.core)
+
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.contentNegotiation)
+                implementation(libs.ktor.client.logging)
+                implementation(libs.ktor.serialization.kotlinx.json)
             }
         }
 
@@ -73,9 +63,7 @@ kotlin {
 
         androidMain {
             dependencies {
-                // Add Android-specific dependencies here. Note that this source set depends on
-                // commonMain by default and will correctly pull the Android artifacts of any KMP
-                // dependencies declared in commonMain.
+                implementation(libs.ktor.client.okhttp)
             }
         }
 
@@ -89,11 +77,13 @@ kotlin {
 
         iosMain {
             dependencies {
-                // Add iOS-specific dependencies here. This a source set created by Kotlin Gradle
-                // Plugin (KGP) that each specific iOS target (e.g., iosX64) depends on as
-                // part of KMP’s default source set hierarchy. Note that this source set depends
-                // on common by default and will correctly pull the iOS artifacts of any
-                // KMP dependencies declared in commonMain.
+                implementation(libs.ktor.client.darwin)
+            }
+        }
+
+        jvmMain {
+            dependencies {
+                implementation(libs.ktor.client.java)
             }
         }
     }
