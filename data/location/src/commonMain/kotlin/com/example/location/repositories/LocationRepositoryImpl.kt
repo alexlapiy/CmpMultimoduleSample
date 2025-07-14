@@ -12,11 +12,15 @@ internal class LocationRepositoryImpl(
     private val mapper: LocationDataMapper
 ) : LocationRepository {
 
-    override fun getLocations(): Flow<List<Location>> = flow {
-        val result = locationRemoteDatasource.getLocations()
-        val locations = result.map {
-            mapper.mapToLocation(it)
+    override fun getLocations(): Flow<Result<List<Location>>> = flow {
+        try {
+            val result = locationRemoteDatasource.getLocations().getOrThrow()
+            val locations = result.map {
+                mapper.mapToLocation(it)
+            }
+            emit(Result.success(locations))
+        } catch (e: Exception) {
+            emit(Result.failure(e))
         }
-        emit(locations)
     }
 }

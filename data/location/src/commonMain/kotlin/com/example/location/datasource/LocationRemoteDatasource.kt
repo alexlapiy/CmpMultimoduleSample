@@ -6,8 +6,7 @@ import com.example.rickandmortyapi.model.location.LocationDto
 internal class LocationRemoteDatasource(
     private val locationApi: LocationApi
 ) {
-    suspend fun getLocations(): List<LocationDto> {
-        val result = locationApi.getAllLocations()
-        return result.getOrNull() ?: emptyList()
+    suspend fun getLocations(): Result<List<LocationDto>> {
+        return locationApi.getAllLocations()
     }
 }
