@@ -3,9 +3,11 @@ package com.example.cmpmultimodulesample
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import com.example.cmpmultimodulesample.di.initializeKoin
+import com.example.core.utils.initDebugLogger
 
 fun main() = application {
 
+    initDebugLogger()
     initializeKoin()
 
     Window(

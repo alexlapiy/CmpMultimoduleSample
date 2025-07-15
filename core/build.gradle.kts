@@ -52,6 +52,8 @@ kotlin {
                 implementation(libs.ktor.client.contentNegotiation)
                 implementation(libs.ktor.client.logging)
                 implementation(libs.ktor.serialization.kotlinx.json)
+
+                implementation(libs.napier)
             }
         }
 
