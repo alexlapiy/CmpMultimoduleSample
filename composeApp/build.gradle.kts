@@ -37,6 +37,8 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.koin.android)
+            implementation(libs.koin.compose)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -48,10 +50,14 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
+            implementation(project.dependencies.platform(libs.koin.bom))
+            implementation(libs.koin.core)
+
             implementation(project(":core"))
             implementation(project(":rickandmortyapi"))
             implementation(project(":domain:location"))
             implementation(project(":data:location"))
+            implementation(project(":features:location"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
