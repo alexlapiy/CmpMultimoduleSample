@@ -53,6 +53,8 @@ kotlin {
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(libs.koin.core)
 
+            implementation(libs.compose.navigation)
+
             implementation(project(":core"))
             implementation(project(":rickandmortyapi"))
             implementation(project(":domain:location"))
