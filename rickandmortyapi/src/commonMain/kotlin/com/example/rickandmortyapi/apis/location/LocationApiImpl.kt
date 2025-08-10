@@ -16,7 +16,7 @@ internal class LocationApiImpl(
             val response = client.get("${ApiConstants.BASE_URL}/location")
                 .body<LocationResponse>()
 
-            Result.success(response.results)
+            Result.success(response.results.orEmpty())
         } catch (e: Exception) {
             Napier.e(e.message.orEmpty())
             Result.failure(e)

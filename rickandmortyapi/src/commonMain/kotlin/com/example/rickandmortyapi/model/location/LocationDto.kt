@@ -9,5 +9,5 @@ data class LocationDto(
     val name: String?,
     val type: String?,
     val dimension: String?,
-    val url: String?,
+    val residents: List<String>?,
 )

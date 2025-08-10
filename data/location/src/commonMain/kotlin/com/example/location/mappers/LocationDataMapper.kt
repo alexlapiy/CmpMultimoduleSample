@@ -10,7 +10,7 @@ internal class LocationDataMapper {
             name = locationDto.name,
             type = locationDto.type,
             dimension = locationDto.dimension,
-            url = locationDto.url,
+            residents = locationDto.residents,
         )
     }
 }

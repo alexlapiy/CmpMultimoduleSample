@@ -83,14 +83,14 @@ fun LocationItem(
             .clickable(onClick = onClick)
             .padding(8.dp)
     ) {
-        AsyncImage(
-            model = location.url,
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(64.dp)
-                .clip(RoundedCornerShape(8.dp))
-        )
+//        AsyncImage(
+//            model = location.url,
+//            contentDescription = null,
+//            contentScale = ContentScale.Crop,
+//            modifier = Modifier
+//                .size(64.dp)
+//                .clip(RoundedCornerShape(8.dp))
+//        )
 
         Spacer(Modifier.width(8.dp))
 

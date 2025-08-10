@@ -9,6 +9,6 @@ class LocationUiMapper {
         name = domain.name.orEmpty(),
         type = domain.type.orEmpty(),
         dimension = domain.dimension.orEmpty(),
-        url = domain.url.orEmpty()
+        residents = domain.residents.orEmpty()
     )
 }
