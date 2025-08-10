@@ -1,7 +1,10 @@
 package com.example.cmpmultimodulesample.di
 
 import com.example.core.di.coreModule
+import com.example.location.di.characterFeatureModule
+import com.example.location.di.characterLocationModule
 import com.example.location.di.dataLocationModule
+import com.example.location.di.domainCharacterModule
 import com.example.location.di.domainLocationModule
 import com.example.location.di.locationFeatureModule
 import com.example.rickandmortyapi.di.rickAndMortyApiModule
@@ -14,7 +17,10 @@ private val sharedModules = listOf(
     rickAndMortyApiModule,
     dataLocationModule,
     domainLocationModule,
-    locationFeatureModule
+    locationFeatureModule,
+    characterLocationModule,
+    domainCharacterModule,
+    characterFeatureModule
 )
 
 fun initializeKoin(

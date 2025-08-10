@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.location.presentation.LocationScreen
+import com.example.location.presentation.location.LocationScreen
 
 @Composable
 fun AppNavHost() {

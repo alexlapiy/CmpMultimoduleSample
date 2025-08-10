@@ -1,4 +1,4 @@
-package com.example.location.presentation
+package com.example.location.presentation.location
 
 import com.example.location.models.items.LocationItemUi
 
