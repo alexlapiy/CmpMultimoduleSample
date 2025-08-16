@@ -2,7 +2,6 @@ package com.example.rickandmortyapi.apis.character
 
 import com.example.rickandmortyapi.ApiConstants
 import com.example.rickandmortyapi.model.character.CharacterDto
-import com.example.rickandmortyapi.model.character.CharacterResponse
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -15,9 +14,9 @@ class CharacterApiImpl(
         return try {
             val idsString = ids.joinToString(",")
             val response = client.get("${ApiConstants.BASE_URL}/character/$idsString")
-                .body<CharacterResponse>()
+                .body<List<CharacterDto>>()
 
-            Result.success(response.results.orEmpty())
+            Result.success(response)
         } catch (e: Exception) {
             Napier.e(e.message.orEmpty())
             Result.failure(e)

@@ -29,7 +29,10 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LocationScreen(viewModel: LocationViewModel = koinViewModel()) {
+fun LocationScreen(
+    onLocationClick: (LocationItemUi) -> Unit,
+    viewModel: LocationViewModel = koinViewModel()
+) {
     val state by viewModel.uiState.collectAsState()
 
     Scaffold(
@@ -56,9 +59,10 @@ fun LocationScreen(viewModel: LocationViewModel = koinViewModel()) {
                     val locations = (state as LocationUiState.Success).locations
                     LazyColumn {
                         items(items = locations) { item ->
-                            LocationItem(item) {
-
-                            }
+                            LocationItem(
+                                location = item,
+                                onClick = { onLocationClick(item) }
+                            )
                         }
                     }
                 }
@@ -93,6 +97,7 @@ fun LocationItem(
             Text(location.name, style = MaterialTheme.typography.titleMedium)
             Text(location.type, style = MaterialTheme.typography.bodySmall)
             Text(location.dimension, style = MaterialTheme.typography.bodySmall)
+            Text("Residents: ${location.residents.size}", style = MaterialTheme.typography.bodySmall)
         }
     }
 }
