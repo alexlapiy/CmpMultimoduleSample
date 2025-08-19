@@ -4,15 +4,15 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -81,9 +81,11 @@ fun CharactersScreen(
                                 .padding(16.dp)
                         )
                     } else {
-                        LazyColumn(
-                            contentPadding = androidx.compose.foundation.layout.PaddingValues(8.dp),
-                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        LazyVerticalStaggeredGrid(
+                            contentPadding = PaddingValues(8.dp),
+                            verticalItemSpacing = 8.dp,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp),
+                            columns = StaggeredGridCells.Fixed(2)
                         ) {
                             items(characters) { character ->
                                 CharacterCard(character = character)
@@ -105,36 +107,35 @@ fun CharacterCard(character: CharacterItemUi) {
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         shape = RoundedCornerShape(8.dp)
     ) {
-        Row(
-            modifier = Modifier.padding(8.dp)
+        Column(
+            modifier = Modifier.padding(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Text(
+                text = character.name,
+                style = MaterialTheme.typography.titleMedium,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
             // Character Image
             AsyncImage(
                 model = character.image,
                 contentDescription = character.name,
                 modifier = Modifier
-                    .size(80.dp)
+                    .size(180.dp)
                     .clip(RoundedCornerShape(4.dp)),
                 contentScale = ContentScale.Crop
             )
 
-            Spacer(modifier = Modifier.width(12.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
             // Character Info
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
+            Column {
                 Text(
-                    text = character.name,
-                    style = MaterialTheme.typography.titleMedium,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-
-                Spacer(modifier = Modifier.height(4.dp))
-
-                Text(
-                    text = character.species,
+                    text = "Species: ${character.species}",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,
@@ -142,7 +143,7 @@ fun CharacterCard(character: CharacterItemUi) {
                 )
 
                 Text(
-                    text = character.status,
+                    text = "Status: ${character.status}",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,
@@ -150,7 +151,7 @@ fun CharacterCard(character: CharacterItemUi) {
                 )
 
                 Text(
-                    text = character.gender,
+                    text = "Gender: ${character.gender}",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,
