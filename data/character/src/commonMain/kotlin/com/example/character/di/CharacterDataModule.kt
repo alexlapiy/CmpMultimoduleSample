@@ -1,13 +1,13 @@
-package com.example.location.di
+package com.example.character.di
 
-import com.example.location.datasource.CharacterRemoteDataSource
-import com.example.location.mappers.CharacterDataMapper
-import com.example.location.repositories.CharacterRepositoryImpl
-import com.example.location.repository.CharacterRepository
+import com.example.character.datasource.CharacterRemoteDataSource
+import com.example.character.mappers.CharacterDataMapper
+import com.example.character.repositories.CharacterRepositoryImpl
+import com.example.character.repository.CharacterRepository
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.module
 
-val characterLocationModule = module {
+val characterDataModule = module {
     factoryOf(::CharacterRemoteDataSource)
     factoryOf(::CharacterDataMapper)
     single<CharacterRepository> {

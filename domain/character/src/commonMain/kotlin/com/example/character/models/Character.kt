@@ -1,4 +1,4 @@
-package com.example.location.models
+package com.example.character.models
 
 data class Character(
     val id: Long?,

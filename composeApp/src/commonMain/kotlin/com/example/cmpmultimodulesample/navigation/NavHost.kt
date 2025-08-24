@@ -6,7 +6,7 @@ import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.location.presentation.character.CharactersScreen
+import com.example.character.presentation.CharactersScreen
 import com.example.location.presentation.location.LocationScreen
 
 object NavigationState {

@@ -1,7 +1,7 @@
-package com.example.location.mappers
+package com.example.character.mappers
 
-import com.example.location.models.Character
-import com.example.location.models.items.CharacterItemUi
+import com.example.character.models.Character
+import com.example.character.models.items.CharacterItemUi
 
 class CharacterUiMapper {
     fun mapToCharacter(domain: Character) = CharacterItemUi(

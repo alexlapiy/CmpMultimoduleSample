@@ -1,7 +1,7 @@
-package com.example.location.di
+package com.example.character.di
 
-import com.example.location.mappers.CharacterUiMapper
-import com.example.location.presentation.character.CharactersViewModel
+import com.example.character.mappers.CharacterUiMapper
+import com.example.character.presentation.CharactersViewModel
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module

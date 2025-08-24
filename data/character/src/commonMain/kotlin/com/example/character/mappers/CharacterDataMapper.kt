@@ -1,6 +1,6 @@
-package com.example.location.mappers
+package com.example.character.mappers
 
-import com.example.location.models.Character
+import com.example.character.models.Character
 import com.example.rickandmortyapi.model.character.CharacterDto
 
 internal class CharacterDataMapper {

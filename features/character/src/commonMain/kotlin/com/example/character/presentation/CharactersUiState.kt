@@ -1,6 +1,6 @@
-package com.example.location.presentation.character
+package com.example.character.presentation
 
-import com.example.location.models.items.CharacterItemUi
+import com.example.character.models.items.CharacterItemUi
 
 interface CharactersUiState {
     data object Loading : CharactersUiState

@@ -1,7 +1,7 @@
-package com.example.location.interactors
+package com.example.character.interactors
 
-import com.example.location.models.Character
-import com.example.location.repository.CharacterRepository
+import com.example.character.models.Character
+import com.example.character.repository.CharacterRepository
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

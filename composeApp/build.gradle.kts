@@ -58,8 +58,11 @@ kotlin {
             implementation(project(":core"))
             implementation(project(":rickandmortyapi"))
             implementation(project(":domain:location"))
+            implementation(project(":domain:character"))
             implementation(project(":data:location"))
+            implementation(project(":data:character"))
             implementation(project(":features:location"))
+            implementation(project(":features:character"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

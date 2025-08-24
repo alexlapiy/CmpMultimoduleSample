@@ -1,9 +1,9 @@
-package com.example.location.repositories
+package com.example.character.repositories
 
-import com.example.location.datasource.CharacterRemoteDataSource
-import com.example.location.mappers.CharacterDataMapper
-import com.example.location.models.Character
-import com.example.location.repository.CharacterRepository
+import com.example.character.datasource.CharacterRemoteDataSource
+import com.example.character.mappers.CharacterDataMapper
+import com.example.character.models.Character
+import com.example.character.repository.CharacterRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

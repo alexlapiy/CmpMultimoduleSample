@@ -1,9 +1,9 @@
-package com.example.location.presentation.character
+package com.example.character.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.location.interactors.CharacterInteractor
-import com.example.location.mappers.CharacterUiMapper
+import com.example.character.interactors.CharacterInteractor
+import com.example.character.mappers.CharacterUiMapper
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch

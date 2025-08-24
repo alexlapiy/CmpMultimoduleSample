@@ -1,4 +1,4 @@
-package com.example.location.datasource
+package com.example.character.datasource
 
 import com.example.rickandmortyapi.apis.character.CharacterApi
 import com.example.rickandmortyapi.model.character.CharacterDto

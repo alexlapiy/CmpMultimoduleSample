@@ -1,6 +1,6 @@
-package com.example.location.repository
+package com.example.character.repository
 
-import com.example.location.models.Character
+import com.example.character.models.Character
 import kotlinx.coroutines.flow.Flow
 
 interface CharacterRepository {

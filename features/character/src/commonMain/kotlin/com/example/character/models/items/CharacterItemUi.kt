@@ -1,4 +1,4 @@
-package com.example.location.models.items
+package com.example.character.models.items
 
 data class CharacterItemUi(
     val id: Long,
