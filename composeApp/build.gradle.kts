@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+    alias(libs.plugins.tiamatDestinationsPlugin)
 }
 
 kotlin {
@@ -49,6 +50,9 @@ kotlin {
             implementation(libs.koin.core)
 
             implementation(libs.compose.navigation)
+            implementation(libs.tiamat)
+            implementation(libs.tiamat.koin)
+            implementation(libs.tiamat.destinations)
 
             implementation(project(":core"))
             implementation(project(":rickandmortyapi"))

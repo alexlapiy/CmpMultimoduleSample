@@ -15,10 +15,13 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -43,6 +46,7 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun CharactersScreen(
     residentUrls: List<String>,
+    onBackClick: () -> Unit = {},
     viewModel: CharactersViewModel = koinViewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
@@ -53,7 +57,19 @@ fun CharactersScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Characters") })
+            TopAppBar(
+                title = { Text("Characters") },
+                navigationIcon = {
+                    IconButton(
+                        onClick = onBackClick
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                }
+            )
         }
     ) { padding ->
         Box(modifier = Modifier.padding(padding)) {
@@ -61,6 +77,7 @@ fun CharactersScreen(
                 is CharactersUiState.Loading -> {
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 }
+
                 is CharactersUiState.Error -> {
                     Text(
                         (state as CharactersUiState.Error).message,
@@ -71,6 +88,7 @@ fun CharactersScreen(
                             .padding(16.dp)
                     )
                 }
+
                 is CharactersUiState.Success -> {
                     val characters = (state as CharactersUiState.Success).characters
                     if (characters.isEmpty()) {

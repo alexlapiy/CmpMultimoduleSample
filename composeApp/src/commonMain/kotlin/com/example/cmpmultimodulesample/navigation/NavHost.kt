@@ -1,33 +1,45 @@
 package com.example.cmpmultimodulesample.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import com.composegears.tiamat.NavDestination
+import com.composegears.tiamat.Navigation
+import com.composegears.tiamat.navArgs
+import com.composegears.tiamat.navController
+import com.composegears.tiamat.navDestination
+import com.composegears.tiamat.rememberNavController
 import com.example.character.presentation.CharactersScreen
 import com.example.location.presentation.location.LocationScreen
 
-object NavigationState {
-    val selectedResidentUrls = mutableStateOf<List<String>>(emptyList())
+
+data class CharactersArgs(val residentUrls: List<String>)
+
+val LocationList: NavDestination<Unit> by navDestination {
+    val nc = navController()
+    LocationScreen(
+        onLocationClick = { location ->
+            nc.navigate(Characters, CharactersArgs(location.residents))
+        }
+    )
+}
+
+val Characters: NavDestination<CharactersArgs> by navDestination {
+    val args = navArgs()
+    val nc = navController()
+
+    CharactersScreen(
+        residentUrls = args.residentUrls,
+        onBackClick = { nc.back() }
+    )
 }
 
 @Composable
 fun AppNavHost() {
-    val navController = rememberNavController()
-    NavHost(navController, startDestination = "locationList") {
-        composable("locationList") {
-            LocationScreen(
-                onLocationClick = { location ->
-                    NavigationState.selectedResidentUrls.value = location.residents
-                    navController.navigate("characters")
-                }
-            )
-        }
-        composable("characters") {
-            val residentUrls = remember { NavigationState.selectedResidentUrls.value }
-            CharactersScreen(residentUrls = residentUrls)
-        }
-    }
+    val navController = rememberNavController(
+        startDestination = LocationList,
+        destinations = arrayOf(
+            LocationList,
+            Characters
+        )
+    )
+    Navigation(navController)
 }
