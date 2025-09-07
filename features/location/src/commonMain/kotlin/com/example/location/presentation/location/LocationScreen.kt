@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -40,11 +41,12 @@ fun LocationScreen(
             TopAppBar(title = { Text("Locations") })
         }
     ) { padding ->
-        Box(modifier = Modifier.padding(padding)) {
+        Box(modifier = Modifier.padding(padding).fillMaxSize()) {
             when (state) {
                 is LocationUiState.Loading -> {
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 }
+
                 is LocationUiState.Error -> {
                     Text(
                         (state as LocationUiState.Error).message,
@@ -55,6 +57,7 @@ fun LocationScreen(
                             .padding(16.dp)
                     )
                 }
+
                 is LocationUiState.Success -> {
                     val locations = (state as LocationUiState.Success).locations
                     LazyColumn {
@@ -82,22 +85,16 @@ fun LocationItem(
             .clickable(onClick = onClick)
             .padding(8.dp)
     ) {
-//        AsyncImage(
-//            model = location.url,
-//            contentDescription = null,
-//            contentScale = ContentScale.Crop,
-//            modifier = Modifier
-//                .size(64.dp)
-//                .clip(RoundedCornerShape(8.dp))
-//        )
-
         Spacer(Modifier.width(8.dp))
 
         Column {
             Text(location.name, style = MaterialTheme.typography.titleMedium)
             Text(location.type, style = MaterialTheme.typography.bodySmall)
             Text(location.dimension, style = MaterialTheme.typography.bodySmall)
-            Text("Residents: ${location.residents.size}", style = MaterialTheme.typography.bodySmall)
+            Text(
+                "Residents: ${location.residents.size}",
+                style = MaterialTheme.typography.bodySmall
+            )
         }
     }
 }
